@@ -321,20 +321,17 @@ series_map = {
     # },
     "Kansas": {
     "Unemployment Rate": "KSUR",  # Monthly, Seasonally Adjusted
-    "State Minimum Wage Rate": "KSWAGDP",  # Annual, Not Seasonally Adjusted
-    "Resident Population": "KSPOP",  # Annual, Not Seasonally Adjusted
+    "State Minimum Wage Rate": "STTMINWGKS",  # Annual, Not Seasonally Adjusted
+    "Resident Population per thousands": "KSPOP",  # Annual, Not Seasonally Adjusted
     "Gross Domestic Product: All Industry Total (Quarterly, SAAR)": "KSNQGSP",
     "All-Transactions House Price Index": "KSSTHPI",
     "Real Median Household Income": "MEHOINUSKSA672N",
     "Per Capita Personal Income": "KSPCPI",
-    "Median Household Income": "KSMHINCOME",
-    "Labor Force Participation Rate": "KSLFPR",
+    "Median Household Income": "MEHOINUSKSA646N",
+    "Labor Force Participation Rate": "LBSSA20",
     "SNAP Benefits Recipients": "BRKS20M647NCEN",
-    "Initial Claims": "KSICLAIMS",
-    "All Employees: Manufacturing": "KSEMPMAN",
-    "New Private Housing Units Authorized by Building Permits": "KSBPUNIT",
-    "Housing Inventory: Median Listing Price": "KSHOMEPRICE",
-    "Homeownership Rate": "KSHOMEOWN"
+    "Housing Inventory: Median Listing Price": "MEDLISPRIKS",
+    "Homeownership Rate": "KSHOWN"
     }
 }
 
