@@ -119,7 +119,7 @@ st.subheader("FRED Metadata Catalogue")
 
 if st.button("Download FRED Metadata"):
     with st.spinner("Retrieving full FRED metadata (this may take ~20–40 seconds)..."):
-        df_meta = get_all_fred_metadata(fred_key)
+        df_meta = get_all_fred_metadata_via_search(fred_key)
 
     st.success(f"Retrieved {len(df_meta):,} series.")
 
