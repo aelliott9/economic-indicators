@@ -259,3 +259,5 @@ if st.button("Download FRED Metadata"):
         file_name="fred_metadata_catalogue.csv",
         mime="text/csv"
     )
+
+st.subheader("Data obtained from: https://fred.stlouisfed.org/categories/27281")
