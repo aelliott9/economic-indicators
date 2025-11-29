@@ -162,60 +162,58 @@ st.download_button("Download CSV", csv, file_name="economic_data.csv", mime="tex
 
 # Merge on date
 # df = pd.merge(df_fed, df_unemp, on="date", how="outer").sort_values("date")
-'''
+
 # Add Federal Funds Rate line
-fig.add_trace(go.Scatter(
-    x=df["date"],
-    y=df["Federal Funds Rate"],
-    mode="lines+markers",
-    name="Federal Funds Rate",
-    line=dict(color="blue")
-))
+# fig.add_trace(go.Scatter(
+#     x=df["date"],
+#     y=df["Federal Funds Rate"],
+#     mode="lines+markers",
+#     name="Federal Funds Rate",
+#     line=dict(color="blue")
+# ))
 
 # Add Unemployment Rate line
-fig.add_trace(go.Scatter(
-    x=df["date"],
-    y=df["Unemployment Rate"],
-    mode="lines+markers",
-    name="Unemployment Rate",
-    line=dict(color="red")
-))
+# fig.add_trace(go.Scatter(
+#     x=df["date"],
+#     y=df["Unemployment Rate"],
+#     mode="lines+markers",
+#     name="Unemployment Rate",
+#     line=dict(color="red")
+# ))
 
 # Add traces to Plotly figure
-fig.add_trace(go.Scatter(
-    x=df["date"],
-    y=df["GDP Growth %"],
-    mode="lines+markers",
-    name="GDP Growth %",
-    line=dict(color="green")
-))
+# fig.add_trace(go.Scatter(
+#     x=df["date"],
+#     y=df["GDP Growth %"],
+#     mode="lines+markers",
+#     name="GDP Growth %",
+#     line=dict(color="green")
+# ))
 
-fig.add_trace(go.Scatter(
-    x=df["date"],
-    y=df["Inflation %"],
-    mode="lines+markers",
-    name="Inflation %",
-    line=dict(color="orange")
-))
+# fig.add_trace(go.Scatter(
+#     x=df["date"],
+#     y=df["Inflation %"],
+#     mode="lines+markers",
+#     name="Inflation %",
+#     line=dict(color="orange")
+# ))
 
 # Update layout title to reflect new series
-fig.update_layout(
-    title="Federal Funds Rate, Unemployment Rate, GDP Growth, and Inflation",
-    xaxis_title="Date",
-    yaxis_title="Percent (%)",
-    hovermode="x unified"
-)
+# fig.update_layout(
+#     title="Federal Funds Rate, Unemployment Rate, GDP Growth, and Inflation",
+#     xaxis_title="Date",
+#     yaxis_title="Percent (%)",
+#     hovermode="x unified"
+# )
 
-# Display in Streamlit
-st.plotly_chart(fig, use_container_width=True)
+# # Display in Streamlit
+# st.plotly_chart(fig, use_container_width=True)
 
-# Show latest data and CSV download
-st.subheader("Data (latest rows)")
-st.write(df.tail())
-csv = df.to_csv(index=False)
-st.download_button("Download CSV", csv, file_name="fedfunds.csv", mime="text/csv")
-'''
-st.subheader("TEST")
+# # Show latest data and CSV download
+# st.subheader("Data (latest rows)")
+# st.write(df.tail())
+# csv = df.to_csv(index=False)
+# st.download_button("Download CSV", csv, file_name="fedfunds.csv", mime="text/csv")
 
 st.subheader("FRED Metadata Catalogue")
 
