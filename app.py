@@ -303,8 +303,6 @@ if start > end:
     st.error("Start date must be before end date.")
     st.stop()
 
-# --- Region and City Selection ---
-region = st.selectbox("Select region:", ["National", "Missouri", "Kansas"], key = 'region')
 # --- Region Selection ---
 region = st.selectbox("Select region:", ["National", "Missouri", "Kansas"], key='region')
 
