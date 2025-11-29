@@ -96,6 +96,22 @@ df_fed = load_fred_series("FEDFUNDS", start.isoformat(), end.isoformat())
 df_unemp = load_fred_series("UNRATE", start.isoformat(), end.isoformat())
 df_unemp.rename(columns={"Federal Funds Rate": "Unemployment Rate"}, inplace=True)
 
+# Load additional series
+df_gdp = load_fred_series("GDPC1", start.isoformat(), end.isoformat())  # Real GDP (quarterly)
+df_gdp.rename(columns={"Federal Funds Rate": "Real GDP"}, inplace=True)
+
+# Compute quarterly GDP growth rate (YoY)
+df_gdp["GDP Growth %"] = df_gdp["Real GDP"].pct_change(periods=4) * 100
+
+df_cpi = load_fred_series("CPIAUCNS", start.isoformat(), end.isoformat())  # CPI, all urban consumers
+# Year-over-year CPI inflation
+df_cpi["Inflation %"] = df_cpi["Federal Funds Rate"].pct_change(periods=12) * 100
+
+# Merge all series
+df = pd.merge(df, df_gdp[["date", "GDP Growth %"]], on="date", how="outer")
+df = pd.merge(df, df_cpi[["date", "Inflation %"]], on="date", how="outer")
+df = df.sort_values("date")
+
 # Merge on date
 df = pd.merge(df_fed, df_unemp, on="date", how="outer").sort_values("date")
 
@@ -117,9 +133,26 @@ fig.add_trace(go.Scatter(
     line=dict(color="red")
 ))
 
-# Update layout
+# Add traces to Plotly figure
+fig.add_trace(go.Scatter(
+    x=df["date"],
+    y=df["GDP Growth %"],
+    mode="lines+markers",
+    name="GDP Growth %",
+    line=dict(color="green")
+))
+
+fig.add_trace(go.Scatter(
+    x=df["date"],
+    y=df["Inflation %"],
+    mode="lines+markers",
+    name="Inflation %",
+    line=dict(color="orange")
+))
+
+# Update layout title to reflect new series
 fig.update_layout(
-    title="Federal Funds Rate and Unemployment Rate",
+    title="Federal Funds Rate, Unemployment Rate, GDP Growth, and Inflation",
     xaxis_title="Date",
     yaxis_title="Percent (%)",
     hovermode="x unified"
