@@ -10,7 +10,7 @@ st.set_page_config(page_title="Federal Funds Rate", layout="wide")
 st.title("Federal Funds Rate (FEDFUNDS) — Historical")
 
 # FRED API key (set in Streamlit Cloud secrets)
-fred_key = st.secrets["FRED"]
+fred_key = st.secrets["FRED"]["Key"]
 fred = Fred(api_key=fred_key)
 
 # Date selector
