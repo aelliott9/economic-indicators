@@ -297,14 +297,14 @@ def get_all_fred_metadata(api_key):
 # --- Date Selection ---
 start_default = "2000-01-01"
 end_default = date.today().isoformat()
-start = st.date_input("Start date", pd.to_datetime(start_default))
-end = st.date_input("End date", pd.to_datetime(end_default))
+start = st.date_input("Start date", pd.to_datetime(start_default), key = 'start_date')
+end = st.date_input("End date", pd.to_datetime(end_default), key = 'end_date')
 if start > end:
     st.error("Start date must be before end date.")
     st.stop()
 
 # --- Region and City Selection ---
-region = st.selectbox("Select region:", ["National", "Missouri", "Kansas"])
+region = st.selectbox("Select region:", ["National", "Missouri", "Kansas"], key = 'region')
 
 city_map = {
     "Missouri": {
@@ -321,7 +321,8 @@ selected_city = "None"
 if region in ["Missouri", "Kansas"]:
     selected_city = st.selectbox(
         f"Select city/metro area in {region} (optional)",
-        options=["None"] + list(city_map[region].keys())
+        options=["None"] + list(city_map[region].keys()),
+        key = 'city_selector'
     )
 
 # --- Map Variables to Series IDs ---
@@ -377,7 +378,8 @@ series_options = ["Federal Funds Rate", "Unemployment Rate", "GDP Growth %", "In
 selected_series = st.multiselect(
     "Select series to display on the chart:",
     options=series_options,
-    default=["Federal Funds Rate", "Unemployment Rate"]
+    default=["Federal Funds Rate", "Unemployment Rate"],
+    key = 'series_selector'
 )
 
 # --- Plot Selected Series ---
