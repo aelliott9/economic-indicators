@@ -21,6 +21,7 @@ fred = Fred(api_key=fred_key)
 # Pull full FRED metadata (all series in all categories)
 def get_all_fred_metadata(api_key):
     base = "https://api.stlouisfed.org/fred"
+    headers = {"Authorization": f"Bearer {api_key}"}  # Use header instead of URL query
     all_data = []
 
     # Start from the root category
