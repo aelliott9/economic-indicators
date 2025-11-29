@@ -162,7 +162,7 @@ st.download_button("Download CSV", csv, file_name="economic_data.csv", mime="tex
 
 # Merge on date
 # df = pd.merge(df_fed, df_unemp, on="date", how="outer").sort_values("date")
-
+'''
 # Add Federal Funds Rate line
 fig.add_trace(go.Scatter(
     x=df["date"],
@@ -214,7 +214,7 @@ st.subheader("Data (latest rows)")
 st.write(df.tail())
 csv = df.to_csv(index=False)
 st.download_button("Download CSV", csv, file_name="fedfunds.csv", mime="text/csv")
-
+'''
 st.subheader("TEST")
 
 st.subheader("FRED Metadata Catalogue")
