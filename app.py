@@ -135,17 +135,24 @@ series_map = {
         "GDP Growth %": "GDPC1",
         "Inflation %": "CPIAUCNS"
     },
-    # "Missouri": {
-    #     "Unemployment Rate": "MISSUR",
-    #     "Employment Level": "MOEMP",
-    #     "Nonfarm Payrolls": "MOPOPN"        
-    # },
+    "Missouri": {
+        "Unemployment Rate": "MOUR",
+        "State Minimum Wage Rate": "STTMINWGMO",
+        "Resident Population in Thousands": "MOPOP",
+        "Gross Domestic Product: All Industry Total": "MONQGSP",
+        "Real Median Household Income": "MEHOINUSMOA672N",
+    "Per Capita Personal Income": "MOPCPI",
+    "Median Household Income": "MEHOINUSMOA646N",
+    "Labor Force Participation Rate": "LBSSA29",
+    "SNAP Benefits Recipients": "BR29000MOA647NCEN",
+    "Housing Inventory: Median Listing Price": "MEDLISPRIMO",
+    "Homeownership Rate": "MOHOWN"
+    },
     "Kansas": {
     "Unemployment Rate": "KSUR",  # Monthly, Seasonally Adjusted
     "State Minimum Wage Rate": "STTMINWGKS",  # Annual, Not Seasonally Adjusted
-    "Resident Population per thousands": "KSPOP",  # Annual, Not Seasonally Adjusted
+    "Resident Population in Thousands": "KSPOP",  # Annual, Not Seasonally Adjusted
     "Gross Domestic Product: All Industry Total (Quarterly, SAAR)": "KSNQGSP",
-    "All-Transactions House Price Index": "KSSTHPI",
     "Real Median Household Income": "MEHOINUSKSA672N",
     "Per Capita Personal Income": "KSPCPI",
     "Median Household Income": "MEHOINUSKSA646N",
