@@ -127,6 +127,39 @@ selected_series = st.multiselect(
     default=["Federal Funds Rate", "Unemployment Rate"]  # default selection
 )
 
+# --- Plot selected series ---
+fig = go.Figure()
+colors = {
+    "Federal Funds Rate": "blue",
+    "Unemployment Rate": "red",
+    "GDP Growth %": "green",
+    "Inflation %": "orange"
+}
+
+for series in selected_series:
+    fig.add_trace(go.Scatter(
+        x=df["date"],
+        y=df[series],
+        mode="lines+markers",
+        name=series,
+        line=dict(color=colors[series])
+    ))
+
+fig.update_layout(
+    title="Economic Indicators",
+    xaxis_title="Date",
+    yaxis_title="Percent (%)",
+    hovermode="x unified"
+)
+
+st.plotly_chart(fig, use_container_width=True)
+
+# --- Optional: show data ---
+st.subheader("Data (latest rows)")
+st.write(df.tail())
+csv = df.to_csv(index=False)
+st.download_button("Download CSV", csv, file_name="economic_data.csv", mime="text/csv")
+
 # Merge on date
 # df = pd.merge(df_fed, df_unemp, on="date", how="outer").sort_values("date")
 
