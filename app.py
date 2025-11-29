@@ -43,6 +43,16 @@ df = load_fred_series("FEDFUNDS", start.isoformat(), end.isoformat())
 #fig.update_layout(yaxis_title="Percent (%)", xaxis_title="Date", hovermode="x unified")
 #st.plotly_chart(fig, use_container_width=True)
 
+# Load Federal Funds Rate
+df_fed = load_fred_series("FEDFUNDS", start.isoformat(), end.isoformat())
+
+# Load Unemployment Rate
+df_unemp = load_fred_series("UNRATE", start.isoformat(), end.isoformat())
+df_unemp.rename(columns={"Federal Funds Rate": "Unemployment Rate"}, inplace=True)
+
+# Merge on date
+df = pd.merge(df_fed, df_unemp, on="date", how="outer").sort_values("date")
+
 # Add Federal Funds Rate line
 fig.add_trace(go.Scatter(
     x=df["date"],
