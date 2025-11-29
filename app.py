@@ -306,24 +306,24 @@ if start > end:
 # --- Region and City Selection ---
 region = st.selectbox("Select region:", ["National", "Missouri", "Kansas"], key = 'region')
 
-city_map = {
-    "Missouri": {
-        "St. Louis Metro": "STLMSUR",  # replace with exact FRED code
-        "Kansas City Metro (MO side)": "KCAMSUR"
-    },
-    "Kansas": {
-        "Kansas City Metro (KS side)": "KCAMSUR",
-        "Wichita, KS": "WICHMSUR"
-    }
-}
+# city_map = {
+#     "Missouri": {
+#         "St. Louis Metro": "STLMSUR",  # replace with exact FRED code
+#         "Kansas City Metro (MO side)": "KCAMSUR"
+#     },
+#     "Kansas": {
+#         "Kansas City Metro (KS side)": "KCAMSUR",
+#         "Wichita, KS": "WICHMSUR"
+#     }
+# }
 
-selected_city = "None"
-if region in ["Missouri", "Kansas"]:
-    selected_city = st.selectbox(
-        f"Select city/metro area in {region} (optional)",
-        options=["None"] + list(city_map[region].keys()),
-        key = 'city_selector'
-    )
+# selected_city = "None"
+# if region in ["Missouri", "Kansas"]:
+#     selected_city = st.selectbox(
+#         f"Select city/metro area in {region} (optional)",
+#         options=["None"] + list(city_map[region].keys()),
+#         key = 'city_selector'
+#     )
 
 # --- Map Variables to Series IDs ---
 series_map = {
@@ -348,10 +348,10 @@ series_map = {
 }
 
 # --- Determine unemployment series based on city selection ---
-if selected_city != "None":
-    unemp_series = city_map[region][selected_city]
-else:
-    unemp_series = series_map[region]["Unemployment Rate"]
+# if selected_city != "None":
+#     unemp_series = city_map[region][selected_city]
+# else:
+#     unemp_series = series_map[region]["Unemployment Rate"]
 
 # --- Load Data ---
 df_fed = load_fred_series(series_map[region]["Federal Funds Rate"], start.isoformat(), end.isoformat())
