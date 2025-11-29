@@ -335,13 +335,13 @@ series_map = {
     },
     "Missouri": {
         "Federal Funds Rate": "FEDFUNDS",
-        "Unemployment Rate": "MISSOURIUR",
+        "Unemployment Rate": "MOUR",
         "GDP Growth %": "GDPC1",
         "Inflation %": "CPIAUCNS"
     },
     "Kansas": {
         "Federal Funds Rate": "FEDFUNDS",
-        "Unemployment Rate": "KANSASUR",
+        "Unemployment Rate": "KSUR",
         "GDP Growth %": "GDPC1",
         "Inflation %": "CPIAUCNS"
     }
