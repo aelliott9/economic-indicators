@@ -108,9 +108,17 @@ df_cpi = load_fred_series("CPIAUCNS", start.isoformat(), end.isoformat())  # CPI
 df_cpi["Inflation %"] = df_cpi["Federal Funds Rate"].pct_change(periods=12) * 100
 
 # Merge all series
+# df = pd.merge(df, df_gdp[["date", "GDP Growth %"]], on="date", how="outer")
+# df = pd.merge(df, df_cpi[["date", "Inflation %"]], on="date", how="outer")
+# df = df.sort_values("date")
+
+# Merge all series step by step, starting from df_fed
+df = df_fed.copy()
+df = pd.merge(df, df_unemp, on="date", how="outer")
 df = pd.merge(df, df_gdp[["date", "GDP Growth %"]], on="date", how="outer")
 df = pd.merge(df, df_cpi[["date", "Inflation %"]], on="date", how="outer")
 df = df.sort_values("date")
+
 
 # Merge on date
 df = pd.merge(df_fed, df_unemp, on="date", how="outer").sort_values("date")
