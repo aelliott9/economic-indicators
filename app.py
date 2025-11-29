@@ -338,27 +338,43 @@ series_map = {
     }
 }
 
+
 # --- Interactive Series Selection ---
 series_options = list(series_map[region].keys())
 selected_series = st.multiselect(
     "Select series to display on the chart:",
     options=series_options,
-    default=series_options[:2],  # default first two indicators
+    default=series_options[:2],
     key='series_selector'
 )
 
-# --- Load Data ---
+# --- Load Data with error handling ---
 df_list = []
+failed_series = []
+
 for var in selected_series:
     series_id = series_map[region][var]
-    df_temp = load_fred_series(series_id, start.isoformat(), end.isoformat())
-    df_temp.rename(columns={"Value": var}, inplace=True)
-    df_list.append(df_temp)
+    try:
+        df_temp = load_fred_series(series_id, start.isoformat(), end.isoformat())
+        df_temp.rename(columns={"Value": var}, inplace=True)
+        df_list.append(df_temp)
+    except ValueError as e:
+        failed_series.append(f"{var} ({series_id}): {e}")
 
-# Merge all selected series on date
-from functools import reduce
-df = reduce(lambda left, right: pd.merge(left, right, on="date", how="outer"), df_list)
-df = df.sort_values("date")
+# Notify user about failed series
+if failed_series:
+    st.warning("Some series could not be loaded:")
+    for msg in failed_series:
+        st.write(msg)
+
+# Merge all successfully loaded series
+if df_list:
+    from functools import reduce
+    df = reduce(lambda left, right: pd.merge(left, right, on="date", how="outer"), df_list)
+    df = df.sort_values("date")
+else:
+    st.error("No data available for the selected series and date range.")
+    st.stop()
 
 # --- Plot Selected Series ---
 fig = go.Figure()
